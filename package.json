@@ -1,0 +1,72 @@
+{
+  "name": "qr-code",
+  "version": "1.0.0",
+  "description": "QR code generator for links: a JavaScript library for Node and the browser, plus an interactive CLI that shows codes in the terminal or saves PNG, SVG or text files.",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./src/index.js",
+  "browser": "./dist/browser.mjs",
+  "types": "./types/index.d.ts",
+  "unpkg": "./dist/qr-code.min.js",
+  "jsdelivr": "./dist/qr-code.min.js",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "browser": {
+        "types": "./types/browser.d.ts",
+        "import": "./dist/browser.mjs",
+        "require": "./dist/browser.cjs"
+      },
+      "import": "./src/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./browser": {
+      "types": "./types/browser.d.ts",
+      "import": "./dist/browser.mjs",
+      "require": "./dist/browser.cjs"
+    },
+    "./dist/qr-code.min.js": "./dist/qr-code.min.js",
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "qr-code": "./bin/qr-code.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "dist",
+    "types",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "start": "node ./bin/qr-code.js",
+    "build": "node scripts/build.mjs",
+    "test": "npm run build && node --test test/",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test"
+  },
+  "keywords": [
+    "qr",
+    "qrcode",
+    "qr-code",
+    "cli",
+    "terminal",
+    "generator",
+    "browser",
+    "library",
+    "svg",
+    "png",
+    "canvas"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "qrcode": "^1.5.4"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2"
+  }
+}

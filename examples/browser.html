@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>qr-code browser demo</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 480px; margin: 40px auto; padding: 0 16px; }
+    input, select, button { font: inherit; padding: 8px; }
+    form { display: flex; gap: 8px; flex-wrap: wrap; }
+    input { flex: 1; min-width: 200px; }
+    #qr { margin-top: 24px; width: 256px; }
+    #qr svg { width: 100%; height: auto; }
+    .error { color: #b91c1c; }
+  </style>
+</head>
+<body>
+  <h1>QR code</h1>
+  <form id="form">
+    <input id="link" placeholder="https://example.com" value="https://example.com">
+    <select id="format">
+      <option value="png">PNG</option>
+      <option value="svg">SVG</option>
+      <option value="txt">Text</option>
+    </select>
+    <button type="button" id="save">Download</button>
+  </form>
+  <p id="message"></p>
+  <div id="qr"></div>
+  <script type="module">
+    import { mount, download, isValidLink } from '../dist/browser.mjs';
+    const link = document.getElementById('link');
+    const message = document.getElementById('message');
+    const render = () => {
+      if (!isValidLink(link.value)) {
+        message.textContent = 'Enter a valid link';
+        message.className = 'error';
+        return;
+      }
+      message.textContent = '';
+      mount('#qr', link.value, { width: 256 });
+    };
+    link.addEventListener('input', render);
+    document.getElementById('form').addEventListener('submit', (event) => event.preventDefault());
+    document.getElementById('save').addEventListener('click', async () => {
+      if (!isValidLink(link.value)) return render();
+      const { fileName } = await download(link.value, undefined, { format: document.getElementById('format').value });
+      message.textContent = `Saved ${fileName}`;
+      message.className = '';
+    });
+    render();
+  </script>
+</body>
+</html>
