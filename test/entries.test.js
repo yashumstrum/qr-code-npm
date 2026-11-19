@@ -18,8 +18,8 @@ test('CommonJS build exposes the same API', async () => {
 });
 
 test('package exports resolve', () => {
-  assert.equal(require.resolve('qr-code'), require.resolve('../dist/index.cjs'));
-  assert.ok(require.resolve('qr-code/browser').endsWith('browser.cjs'));
+  assert.equal(require.resolve('@yashumstrum/qr-code'), require.resolve('../dist/index.cjs'));
+  assert.ok(require.resolve('@yashumstrum/qr-code/browser').endsWith('browser.cjs'));
 });
 
 test('browser ESM bundle works without a DOM for pure functions', async () => {

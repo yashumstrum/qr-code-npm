@@ -1,13 +1,11 @@
-# qr-code
+# @yashumstrum/qr-code
 
 QR code generator for links. Use it as a JavaScript library in Node or the browser, or as an interactive CLI that shows codes in the terminal or saves them as PNG, SVG or text.
 
-## Install (local)
+## Install
 
 ```bash
-npm install
-npm run build
-npm link
+npm install @yashumstrum/qr-code
 ```
 
 ## JavaScript library
@@ -15,7 +13,7 @@ npm link
 ### Node (ESM)
 
 ```js
-import { toTerminal, toFile, toSvg, toPngBuffer, toDataUrl, toMatrix } from 'qr-code';
+import { toTerminal, toFile, toSvg, toPngBuffer, toDataUrl, toMatrix } from '@yashumstrum/qr-code';
 
 console.log(await toTerminal('example.com'));
 await toFile('https://example.com', 'out/site.png', { width: 600, errorCorrectionLevel: 'H' });
@@ -26,7 +24,7 @@ const png = await toPngBuffer('https://example.com');
 ### Node (CommonJS)
 
 ```js
-const { toFile, toSvgSync } = require('qr-code');
+const { toFile, toSvgSync } = require('@yashumstrum/qr-code');
 
 toFile('example.com', 'qr.png').then(({ path }) => console.log(path));
 const svg = toSvgSync('example.com');
@@ -34,10 +32,10 @@ const svg = toSvgSync('example.com');
 
 ### Browser (bundlers: Vite, webpack, etc.)
 
-Bundlers pick the browser build automatically. You can also import `qr-code/browser` explicitly.
+Bundlers pick the browser build automatically. You can also import `@yashumstrum/qr-code/browser` explicitly.
 
 ```js
-import { mount, toCanvas, download, toImage, toBlob } from 'qr-code';
+import { mount, toCanvas, download, toImage, toBlob } from '@yashumstrum/qr-code';
 
 mount('#qr', 'https://example.com', { width: 256 });
 await toCanvas(document.querySelector('canvas'), 'https://example.com');
@@ -50,7 +48,7 @@ const blob = await toBlob('https://example.com', { format: 'svg' });
 
 ```html
 <div id="qr"></div>
-<script src="node_modules/qr-code/dist/qr-code.min.js"></script>
+<script src="node_modules/@yashumstrum/qr-code/dist/qr-code.min.js"></script>
 <script>
   QrCode.mount('#qr', 'https://example.com');
 </script>

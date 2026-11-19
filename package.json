@@ -1,6 +1,9 @@
 {
-  "name": "qr-code",
+  "name": "@yashumstrum/qr-code",
   "version": "1.0.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "QR code generator for links: a JavaScript library for Node and the browser, plus an interactive CLI that shows codes in the terminal or saves PNG, SVG or text files.",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -29,7 +32,7 @@
     "./package.json": "./package.json"
   },
   "bin": {
-    "qr-code": "./bin/qr-code.js"
+    "qr-code": "bin/qr-code.js"
   },
   "files": [
     "bin",
@@ -42,7 +45,7 @@
   "scripts": {
     "start": "node ./bin/qr-code.js",
     "build": "node scripts/build.mjs",
-    "test": "npm run build && node --test test/",
+    "test": "npm run build && node --test",
     "prepare": "npm run build",
     "prepublishOnly": "npm test"
   },
